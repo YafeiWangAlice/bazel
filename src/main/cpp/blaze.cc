@@ -1255,8 +1255,9 @@ static void ComputeBaseDirectories(const WorkspaceLayout *workspace_layout,
 // of '--client_env'.
 static void PrepareEnvironmentForJvm() {
   if (!blaze::GetEnv("http_proxy").empty()) {
-    PrintWarning("ignoring http_proxy in environment.");
-    blaze::UnsetEnv("http_proxy");
+    //deleted by kevin for proxy
+    //PrintWarning("ignoring http_proxy in environment.");
+    //blaze::UnsetEnv("http_proxy");
   }
 
   if (!blaze::GetEnv("LD_ASSUME_KERNEL").empty()) {
