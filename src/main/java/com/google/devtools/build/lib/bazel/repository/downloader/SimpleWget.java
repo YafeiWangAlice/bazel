@@ -23,15 +23,14 @@ import com.google.devtools.build.lib.bazel.repository.cache.RepositoryCache;
 import com.google.devtools.build.lib.bazel.repository.cache.RepositoryCache.KeyType;
 
 public class SimpleWget {
-	public static final DEFAULT_WGET = "wget";
-	public static final DEFAULT_WGET_OPT = "--tries=3 --timeout=15 --no-check-certificate";
+	public static final String DEFAULT_WGET = "wget";
+	public static final String DEFAULT_WGET_OPT = "--tries=3 --timeout=15 --no-check-certificate";
 	public static String wgetApp = null;
 	public static String wgetOpt = null;
 
 	public static void download(List<URL> urls, Path destination, String sha256) throws IOException {
 		for (URL url : urls) {
 			String command = WgetCommand(url.toString(), destination.toString());
-			System.out.println("wget download " + url.toString() + " to " + destination.toString());
 			try {
 				SimpleShell(command);
 				if (FileValid(destination, sha256)) {
@@ -46,28 +45,30 @@ public class SimpleWget {
 		throw new IOException("Wget error: " + urls + " to " + destination);
 	}
 	
-	private static void InitWget() {
+	private static String WhichWget() {
 		if (wgetApp == null) {
 			wgetApp = System.getenv("BAZEL_WGET");
 			if (wgetApp == null) {
 				wgetApp = DEFAULT_WGET;
 			}
 		}
+		return wgetApp;
 	}
 
-	private static void InitOpts() {
+	private static String WgetOpts() {
 		if (wgetOpt == null) {
 			wgetOpt = System.getenv("BAZEL_WGET_OPT");
 			if (wgetOpt == null) {
 				wgetOpt = DEFAULT_WGET_OPT;
 			}
 		}
+		return wgetOpt;
 	}
 
 	private static String WgetCommand(String url, String outFile) {
-		InitWget();
-		InitOpts();
-		return wgetApp + " " + wgetOpt + " -O " + outFile;
+		String wget = WhichWget();
+		String opts = WgetOpts();
+		return wget + " " + opts + " " + url + " -O " + outFile;
 	}
 
 	public static boolean FileValid(Path destination, String sha256) {
@@ -90,7 +91,7 @@ public class SimpleWget {
 		return true;
     }
 
-	private static void SimpleShell throws Exception (String command) {
+	private static void SimpleShell(String command) throws Exception {
 		Process proc = Runtime.getRuntime().exec(command);
 		proc.waitFor();
 	}
