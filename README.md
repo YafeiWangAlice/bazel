@@ -2,24 +2,48 @@
 
 *{Fast, Correct} - Choose two*
 
-Build and test software of any size, quickly and reliably.
+Bazel with proxy.
 
-* **Speed up your builds and tests**:
-  Bazel only rebuilds what is necessary.
-  With advanced local and distributed caching, optimized dependency analysis and
-  parallel execution, you get fast and incremental builds.
+  The bazel now, can not work under a network with proxy, so I
+  make this project and add a new package download method, 
+  which using simple wget command.
 
-* **One tool, multiple languages**: Build and test Java, C++, Android, iOS, Go
-  and a wide variety of other language platforms. Bazel runs on Windows, macOS,
-  and Linux.
+  Please confirm you machine has wget installed
 
-* **Scalable**: Bazel helps you scale your organization, codebase and Continuous
-  Integration system.
-  It handles codebases of any size, in multiple repositories or a huge monorepo.
+  * **Install bazel**:
+    download code:
+      git clone https://github.com/ixuexi/bazel.git
 
-* **Extensible to your needs**: Easily add support for new languages and
-  platforms with Bazel's familiar extension language. Share and re-use language
-  rules written by the growing Bazel community.
+    build bazel:
+      bazel build //src:bazel
+    
+  * **Setup proxy env**:
+    declare your proxy env by:
+      export http_proxy=http://proxy.example.com:8080
+      export https_proxy=http://proxy.example.com:8080
+      export ftp_proxy=http://proxy.example.com:8080
+    
+    or edit your /etc/wgetrc file and append the lines:
+      http_proxy=http://proxy.example.com:8080
+      https_proxy=http://proxy.example.com:8080
+      ftp_proxy=http://proxy.example.com:8080
+
+    if you proxy need auth, your url will be:
+      http://username:password@proxy.example.com:8080
+
+    also you can change your wget command with absolute path by:
+      export BAZEL_WGET=/home/somedir/wget  (default: wget)
+
+    you can change your wget options by:
+      export BAZEL_WGET_OPT="--timeout=30"  
+      (default is: --tries=3 --timeout=15 --no-check-certificate)
+
+  * **Changlog**:
+    - bazel clear the env http_proxy by default, just remove it
+    - try download by default method, if error, then use wget instead
+    - add a wget download method, which direct use wget command on your machine
+    
+--------
 
 ## Getting Started
 
