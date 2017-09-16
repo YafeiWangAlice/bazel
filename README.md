@@ -10,44 +10,36 @@ Bazel with proxy.
 
   Please confirm you machine has wget installed
 
-  * **Install bazel**:
+  * **Install bazel**:\<br>
   
-    download code:
-    
-      git clone https://github.com/ixuexi/bazel.git
+    download code:\<br>    
+      git clone https://github.com/ixuexi/bazel.git\<br>
 
-    build bazel:
-    
+    build bazel:\<br>
       bazel build //src:bazel
     
-  * **Setup proxy env**:
+  * **Setup proxy env**:\<br>
   
-    declare your proxy env by:
+    declare your proxy env by:\<br>    
+      export http_proxy=http://proxy.example.com:8080\<br>
+      export https_proxy=http://proxy.example.com:8080\<br>
+      export ftp_proxy=http://proxy.example.com:8080\<br>
     
-      export http_proxy=http://proxy.example.com:8080
-      export https_proxy=http://proxy.example.com:8080
-      export ftp_proxy=http://proxy.example.com:8080
-    
-    or edit your /etc/wgetrc file and append the lines:
-    
-      http_proxy=http://proxy.example.com:8080
-      https_proxy=http://proxy.example.com:8080
-      ftp_proxy=http://proxy.example.com:8080
+    or edit your /etc/wgetrc file and append the lines:\<br>    
+      http_proxy=http://proxy.example.com:8080\<br>
+      https_proxy=http://proxy.example.com:8080\<br>
+      ftp_proxy=http://proxy.example.com:8080\<br>
 
-    if you proxy need auth, your url will be:
-    
+    if you proxy need auth, your url will be:\<br>    
       http://username:password@proxy.example.com:8080
 
   * **Setup wget (optional)**:
   
-    also you can change your wget command with absolute path by:
-    
-      export BAZEL_WGET=/home/somedir/wget  (default: wget)
+    also you can change your wget command with absolute path by:\<br>    
+      export BAZEL_WGET=/home/somedir/wget  (default: wget)\<br>
 
-    you can change your wget options by:
-    
-      export BAZEL_WGET_OPT="--timeout=30"  
-      
+    you can change your wget options by:\<br>    
+      export BAZEL_WGET_OPT="--timeout=30"\<br>      
       (default is: --tries=3 --timeout=15 --no-check-certificate)
 
   * **Changlog**:
