@@ -8,7 +8,7 @@ Bazel with proxy.
   make this project and add a new package download method, 
   which using simple wget command.
 
-  Please confirm you machine has wget installed
+  Please confirm your machine has wget installed
 
   * **Install bazel**:<br>
   
@@ -20,25 +20,26 @@ Bazel with proxy.
     
   * **Setup proxy env**:<br>
   
-    declare your proxy env by:<br>
+    declare proxy env by:<br>
     export http_proxy=http://proxy.example.com:8080<br>
     export https_proxy=http://proxy.example.com:8080<br>
     export ftp_proxy=http://proxy.example.com:8080<br>
     
-    or edit your /etc/wgetrc file and append the lines:<br>
+    or edit /etc/wgetrc file and append the lines:<br>
     http_proxy=http://proxy.example.com:8080<br>
     https_proxy=http://proxy.example.com:8080<br>
     ftp_proxy=http://proxy.example.com:8080<br>
 
-    if you proxy need auth, your url will be:<br>
+    if the proxy need auth, the url will be:<br>
     http://username:password@proxy.example.com:8080
 
   * **Setup wget (optional)**:
   
-    also you can change your wget command with absolute path by:<br>
-    export BAZEL_WGET=/home/somedir/wget  (default: wget)<br>
+    you can change the wget command with absolute path by:<br>
+    export BAZEL_WGET=/home/somedir/wget<br>
+    (default: wget)
 
-    you can change your wget options by:<br>
+    you can change the wget options by:<br>
     export BAZEL_WGET_OPT="--timeout=30"<br>
     (default is: --tries=3 --timeout=15 --no-check-certificate)
 
