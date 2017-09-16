@@ -11,31 +11,43 @@ Bazel with proxy.
   Please confirm you machine has wget installed
 
   * **Install bazel**:
+  
     download code:
+    
       git clone https://github.com/ixuexi/bazel.git
 
     build bazel:
+    
       bazel build //src:bazel
     
   * **Setup proxy env**:
+  
     declare your proxy env by:
+    
       export http_proxy=http://proxy.example.com:8080
       export https_proxy=http://proxy.example.com:8080
       export ftp_proxy=http://proxy.example.com:8080
     
     or edit your /etc/wgetrc file and append the lines:
+    
       http_proxy=http://proxy.example.com:8080
       https_proxy=http://proxy.example.com:8080
       ftp_proxy=http://proxy.example.com:8080
 
     if you proxy need auth, your url will be:
+    
       http://username:password@proxy.example.com:8080
 
+  * **Setup wget (optional)**:
+  
     also you can change your wget command with absolute path by:
+    
       export BAZEL_WGET=/home/somedir/wget  (default: wget)
 
     you can change your wget options by:
+    
       export BAZEL_WGET_OPT="--timeout=30"  
+      
       (default is: --tries=3 --timeout=15 --no-check-certificate)
 
   * **Changlog**:
