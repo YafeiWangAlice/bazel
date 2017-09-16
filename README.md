@@ -13,10 +13,10 @@ Bazel with proxy.
   * **Install bazel**:<br>
   
     download code:<br>
-    >>git clone https://github.com/ixuexi/bazel.git<br>
+        git clone https://github.com/ixuexi/bazel.git<br>
 
     build bazel:<br>
-    >>bazel build //src:bazel
+        bazel build //src:bazel
     
   * **Setup proxy env**:<br>
   
