@@ -17,6 +17,9 @@ Bazel with proxy.
 
     build bazel:<br>
     bazel build //src:bazel
+
+    binary is at:<br>
+    bazel-bin/src/bazel
     
   * **Setup proxy env**:<br>
   
